@@ -7,12 +7,9 @@ public class AppArvore {
 
         while (!entrada.equals("s")) {
             System.out.println("\n" +
-                    "i - Inserir; \n" +
-                    "b - Buscar; \n" +
-                    "r - Remover; \n" +
-                    "1 - Em-Ordem; \n" +
-                    "2 - Pré-Ordem; \n" +
-                    "3 - Pós-Ordem; \n" +
+                    "1 - Buscar por CPF; \n" +
+                    "2 - Buscar por intervalo de data de nascimento; \n" +
+                    "3 - Buscar por nome; \n" +
                     "s - Sair;");
             entrada = verificarEntradaService.verificar(Teclado.leString("Escolha uma opção: "));
         }

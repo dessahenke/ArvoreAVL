@@ -34,4 +34,14 @@ public class Pessoa {
     public String getCidade() {
         return cidade;
     }
+
+    public String toString() {
+        String str = "Nome: " + this.nome;
+        str += "\nCPF: " + this.cpf;
+        str += "\nRG: " + this.rg;
+        str += "\nData de Nascimento: " + this.dataNascimento;
+        str += "\nCidade: " + this.cidade;
+
+        return str;
+    }
 }

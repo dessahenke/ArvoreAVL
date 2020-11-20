@@ -1,3 +1,6 @@
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 class VerificarEntradaService {
 
@@ -9,28 +12,36 @@ class VerificarEntradaService {
         this.tecladoService = new TecladoService();
     }
 
+    Date transformToDate(String stringDate) {
+        Date dt = new Date();
+
+        try {
+            DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+            dt = df.parse(stringDate);
+        }catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+        return dt;
+    }
+
     String verificar(String entrada) {
         switch (entrada) {
-            case "i":
-                System.out.println("Opção de inserção selecionada!");
-                arvoreService.preInserir(Teclado.leInt("Digite o valor a ser inserido: "));
-                break;
-            case "b":
-                System.out.println("Opção de busca selecionada!");
-                arvoreService.preBuscar(Teclado.leInt("Digite o valor que deseja buscar: "));
-                break;
-            case "r":
-                System.out.println("Opção de remoção selecionada!");
-                arvoreService.preRemover(Teclado.leInt("Digite o valor que deseja remover: "));
-                break;
             case "1":
-                arvoreService.imprimirInOrdem();
+                System.out.println("Opção de busca por CPF selecionada!");
+                arvoreService.preBuscarCPF(Teclado.leInt("Digite o CPF que deseja buscar: "));
                 break;
             case "2":
-                arvoreService.imprimirPreOrdem();
+                System.out.println("Opção de busca por intervalo de data de nascimento selecionada!");
+                String id = Teclado.leString("Data inicial do intervalo que deseja buscar: ");
+                Date initialDate = transformToDate(id);
+                String fd = Teclado.leString("Data final do intervalo que deseja buscar: ");
+                Date finalDate = transformToDate(fd);
+                arvoreService.preBuscaDataNascimento(initialDate, finalDate);
                 break;
             case "3":
-                arvoreService.imprimirPosOrdem();
+                System.out.println("Opção de busca por nome selecionada!");
+                arvoreService.preBuscaNome(Teclado.leString("Digite o nome que deseja buscar: "));
                 break;
             case "s":
                 System.out.println("Encerrando programa!");

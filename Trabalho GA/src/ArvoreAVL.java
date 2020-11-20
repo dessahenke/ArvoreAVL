@@ -1,7 +1,9 @@
 
-import java.util.Objects;
+import java.util.ArrayList;
+import java.util.Date;
 
 import static java.util.Optional.ofNullable;
+
 
 class ArvoreAVL {
 
@@ -54,16 +56,8 @@ class ArvoreAVL {
         raiz = new CalcularBalanceamentoArvore().verificaBalanceamento(raiz);
     }
 
-    void imprimirPreOrdem() {
-        new ImprimirInArvore().imprimirPreOrdem(raiz);
-    }
-
-    void imprimirInOrdem() {
-        new ImprimirInArvore().imprimirInOrdem(raiz);
-    }
-
-    void imprimirPosOrdem() {
-        new ImprimirInArvore().imprimirPosOrdem(raiz);
+    void imprimirPessoas(ArrayList<Pessoa> pessoas) {
+        new ImprimirInArvore().imprimirListaPessoas(pessoas);
     }
 
     boolean busca(final int valor) {
@@ -89,52 +83,78 @@ class ArvoreAVL {
         }
     }
 
-    Nodo remover(final int cpf) {
-        return remover(cpf, raiz);
+    ArrayList<Pessoa> buscaPorNome(String nome) {
+        return buscaPorNome(nome, raiz);
     }
 
-    private Nodo remover(final int elemento, Nodo nodo) {
-        if (Objects.nonNull(nodo) && nodo.getChave() == elemento){
-            if (nodo.getNodoEsquerda() == null && nodo.getNodoDireita() == null){
-                return null;
+    private ArrayList<Pessoa> buscaPorNome(String nome, final Nodo nodo) {
+        ArrayList<Pessoa> pessoas = new ArrayList<>();
+        if (nodo != null) {
+            Pessoa pessoa = nodo.getPessoa();
+
+            if(pessoa.getNome().startsWith(nome)){
+                pessoas.add(pessoa);
             }
-            else{
-                // s� tem filhos � esquerda (acaba sobrando a sub-�rvore da esquerda)
-                if (nodo.getNodoEsquerda() != null && nodo.getNodoDireita() == null){
-                    return nodo.getNodoEsquerda();
-                }
-                // s� tem filhos � direita (acaba sobrando a sub-�rvore da direita)
-                else if (nodo.getNodoDireita() != null && nodo.getNodoEsquerda() == null){
-                    return nodo.getNodoDireita();
-                }
-                // assumo o maior dentre os filhos
-                else{
-                    Nodo nodoAuxiliar = nodo.getNodoDireita();
-                    while (nodoAuxiliar.getNodoEsquerda() != null){
-                        nodoAuxiliar = nodoAuxiliar.getNodoEsquerda();
-                    }
-                    nodo = nodoAuxiliar;  // troco os valores
-                    nodoAuxiliar.setPessoa(elemento);
-                    //�rvore da direita recebe a remo��o do elemento (que vai estar numa folha)
-                    nodo.setNodoDireita(remover(elemento, nodo.getNodoDireita()));
-                }
+
+            if (nodo.getNodoEsquerda() != null) {
+                buscaPorNome(nome, nodo.getNodoEsquerda());
+            }
+
+            if (nodo.getNodoDireita() != null) {
+                buscaPorNome(nome, nodo.getNodoDireita());
             }
         }
-        else{
-            // elemento � menor, ent�o remov�-lo na esquerda
-            if (Objects.nonNull(nodo) && elemento < nodo.getValor() ){
-                if (nodo.getNodoEsquerda() != null){
-                    nodo.setNodoEsquerda(remover(elemento, nodo.getNodoEsquerda()));
-                }
+
+        return pessoas;
+    }
+
+    ArrayList<Pessoa> buscaPorNascimento(Date initialDate, Date finalDate) {
+        return buscaPorNascimento(initialDate, finalDate, raiz);
+    }
+
+    private ArrayList<Pessoa> buscaPorNascimento(Date initialDate, Date finalDate, final Nodo nodo) {
+        ArrayList<Pessoa> pessoas = new ArrayList<>();
+        if (nodo != null) {
+            Pessoa pessoa = nodo.getPessoa();
+            boolean isAfterInicialDate = pessoa.getDataNascimento().after(initialDate);
+            boolean isBeforeFinalDate = pessoa.getDataNascimento().before(finalDate);
+
+            if(isAfterInicialDate && isBeforeFinalDate){
+                pessoas.add(pessoa);
             }
-            // elemento � maior, ent�o remov�-lo na direita
-            else if (Objects.nonNull(nodo) && elemento > nodo.getValor()){
-                if (nodo.getNodoDireita() != null){
-                    nodo.setNodoDireita(remover(elemento, nodo.getNodoDireita()));
-                }
+
+            if (nodo.getNodoEsquerda() != null) {
+                buscaPorNascimento(initialDate, finalDate, nodo.getNodoEsquerda());
+            }
+
+            if (nodo.getNodoDireita() != null) {
+                buscaPorNascimento(initialDate, finalDate, nodo.getNodoDireita());
             }
         }
-        return nodo;
+
+        return pessoas;
+    }
+
+    Pessoa getPessoa(final int valor) {
+        return getPessoa(valor, raiz);
+    }
+
+    private Pessoa getPessoa(final int cpf, final Nodo nodo) {
+
+        if (nodo == null) {
+            return null;
+        } else if (nodo.getChave() == cpf) {
+            return nodo.getPessoa();
+        } else if (cpf < nodo.getChave()) {
+            if(nodo.getNodoEsquerda() != null) {
+                return getPessoa(cpf, nodo.getNodoEsquerda());
+            }
+        } else if (cpf > nodo.getChave()) {
+            if(nodo.getNodoDireita() != null) {
+                return getPessoa(cpf, nodo.getNodoDireita());
+            }
+        }
+        return null;
     }
 
 }

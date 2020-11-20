@@ -35,6 +35,6 @@ class ExibirArvore {
     }
 
     private String toString(final Nodo nodo) {
-        return "[" + nodo.getValor() + "] (" + nodo.getBalanceamento() + ")";
+        return "[" + nodo.getPessoa().getNome() + "] (" + nodo.getBalanceamento() + ")";
     }
 }
