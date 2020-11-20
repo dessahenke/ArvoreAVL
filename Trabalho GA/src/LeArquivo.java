@@ -1,22 +1,23 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class LeArquivo {
-    public static void leArquivo(){
-        String arquivoCSV = "dados.csv";
+    public static ArrayList<String[]> leArquivo(String arquivoCSV){
         BufferedReader br = null;
         String linha = "";
-        String csvDivisor = ",";
+        String csvDivisor = ";";
+        ArrayList<String[]> lista = new ArrayList<String[]>();
         try {
             br = new BufferedReader(new FileReader(arquivoCSV));
             while ((linha = br.readLine()) != null) {
-
-                String[] pessoa = linha.split(csvDivisor);
-
-                System.out.println(pessoa[pessoa.length-2] + pessoa[pessoa.length-1]);
-
+                String[] linhaLimpa = linha.split(csvDivisor);
+                lista.add(linhaLimpa);
+                //System.out.println(lista[lista.length-2] + lista[lista.length-1]);
             }
+            //System.out.println(lista.get(0)[0]);
+            //return lista;
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -29,5 +30,6 @@ public class LeArquivo {
                 }
             }
         }
+        return lista;
     }
 }

@@ -2,6 +2,7 @@ public class AppArvore {
 
     public static void main(String[] args) {
 
+        System.out.println(LeArquivo.leArquivo("dados.csv"));
         VerificarEntradaService verificarEntradaService = new VerificarEntradaService();
         String entrada = "";
 
