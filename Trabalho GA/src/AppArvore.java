@@ -1,8 +1,17 @@
+import java.util.ArrayList;
+
 public class AppArvore {
 
     public static void main(String[] args) {
-
+        ArvoreService arvoreService = new ArvoreService();
         System.out.println(LeArquivo.leArquivo("dados.csv"));
+        ArrayList<String[]> listaPessoas = LeArquivo.leArquivo("dados.csv");
+
+
+        for (String[] pessoa: listaPessoas) {
+            arvoreService.inserirPessoa(pessoa);
+        }
+
         VerificarEntradaService verificarEntradaService = new VerificarEntradaService();
         String entrada = "";
 

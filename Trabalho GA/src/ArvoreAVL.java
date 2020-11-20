@@ -1,9 +1,10 @@
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
 import static java.util.Optional.ofNullable;
-
 
 class ArvoreAVL {
 
@@ -135,15 +136,15 @@ class ArvoreAVL {
         return pessoas;
     }
 
-    Pessoa getPessoa(final int valor) {
+    Pessoa getPessoa(final Long valor) {
         return getPessoa(valor, raiz);
     }
 
-    private Pessoa getPessoa(final int cpf, final Nodo nodo) {
+    private Pessoa getPessoa(final Long cpf, final Nodo nodo) {
 
         if (nodo == null) {
             return null;
-        } else if (nodo.getChave() == cpf) {
+        } else if (nodo.getChave().equals(cpf)) {
             return nodo.getPessoa();
         } else if (cpf < nodo.getChave()) {
             if(nodo.getNodoEsquerda() != null) {

@@ -6,37 +6,26 @@ class VerificarEntradaService {
 
     private final ArvoreService arvoreService;
     private final TecladoService tecladoService;
+    private final ArvoreAVL arvoreAVL;
 
     VerificarEntradaService() {
         this.arvoreService = new ArvoreService();
         this.tecladoService = new TecladoService();
-    }
-
-    Date transformToDate(String stringDate) {
-        Date dt = new Date();
-
-        try {
-            DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-            dt = df.parse(stringDate);
-        }catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-
-        return dt;
+        this.arvoreAVL = new ArvoreAVL();
     }
 
     String verificar(String entrada) {
         switch (entrada) {
             case "1":
                 System.out.println("Opção de busca por CPF selecionada!");
-                arvoreService.preBuscarCPF(Teclado.leInt("Digite o CPF que deseja buscar: "));
+                arvoreService.preBuscarCPF(Teclado.leString("Digite o CPF que deseja buscar: "));
                 break;
             case "2":
                 System.out.println("Opção de busca por intervalo de data de nascimento selecionada!");
                 String id = Teclado.leString("Data inicial do intervalo que deseja buscar: ");
-                Date initialDate = transformToDate(id);
+                Date initialDate = arvoreService.transformToDate(id);
                 String fd = Teclado.leString("Data final do intervalo que deseja buscar: ");
-                Date finalDate = transformToDate(fd);
+                Date finalDate = arvoreService.transformToDate(fd);
                 arvoreService.preBuscaDataNascimento(initialDate, finalDate);
                 break;
             case "3":

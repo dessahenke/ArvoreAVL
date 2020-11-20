@@ -1,13 +1,13 @@
 import java.util.Date;
 
 public class Pessoa {
-    private int cpf;
-    private int rg;
+    private Long cpf;
+    private Long rg;
     private String nome;
     private Date dataNascimento;
     private String cidade;
 
-    public Pessoa(int cpf, int rg, String nome, Date dataNascimento, String cidade) {
+    public Pessoa(Long cpf, Long rg, String nome, Date dataNascimento, String cidade) {
         this.cpf = cpf;
         this.rg = rg;
         this.nome = nome;
@@ -15,11 +15,11 @@ public class Pessoa {
         this.cidade = cidade;
     }
 
-    public int getCpf() {
+    public Long getCpf() {
         return cpf;
     }
 
-    public int getRg() {
+    public Long getRg() {
         return rg;
     }
 

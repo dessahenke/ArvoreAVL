@@ -16,7 +16,7 @@ public class LeArquivo {
                 lista.add(linhaLimpa);
                 //System.out.println(lista[lista.length-2] + lista[lista.length-1]);
             }
-            //System.out.println(lista.get(0)[0]);
+            System.out.println(lista.get(0)[0]);
             //return lista;
 
         } catch (IOException e) {
@@ -30,6 +30,7 @@ public class LeArquivo {
                 }
             }
         }
+        lista.remove(0);
         return lista;
     }
 }

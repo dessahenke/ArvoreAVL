@@ -19,24 +19,24 @@ class CalcularBalanceamentoArvore {
 
     void calcularBalanceamento(final Nodo nodo) {
 
-        if (nodo.nodoDireitaNulo()) {
+        if (nodo.nodoEsquerdaNulo()) {
 
-            if (nodo.nodoEsquerdaNulo()) {
+            if (nodo.nodoDireitaNulo()) {
                 nodo.setBalanceamento(ZERO);
             } else {
-                nodo.setBalanceamento(ZERO - calcularAltura(nodo.getNodoEsquerda()));
-                calcularBalanceamento(nodo.getNodoEsquerda());
+                nodo.setBalanceamento(ZERO - calcularAltura(nodo.getNodoDireita()));
+                calcularBalanceamento(nodo.getNodoDireita());
             }
 
         } else {
 
-            if (nodo.nodoEsquerdaNulo()) {
-                nodo.setBalanceamento(calcularAltura(nodo.getNodoDireita()));
+            if (nodo.nodoDireitaNulo()) {
+                nodo.setBalanceamento(calcularAltura(nodo.getNodoEsquerda()));
             } else {
-                nodo.setBalanceamento(calcularAltura(nodo.getNodoDireita()) - calcularAltura(nodo.getNodoEsquerda()));
-                calcularBalanceamento(nodo.getNodoEsquerda());
+                nodo.setBalanceamento(calcularAltura(nodo.getNodoEsquerda()) - calcularAltura(nodo.getNodoDireita()));
+                calcularBalanceamento(nodo.getNodoDireita());
             }
-            calcularBalanceamento(nodo.getNodoDireita());
+            calcularBalanceamento(nodo.getNodoEsquerda());
         }
 
     }

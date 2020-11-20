@@ -1,7 +1,7 @@
 
 class Nodo {
 
-    private Integer chave;
+    private Long chave;
     private Pessoa pessoa;
     private Nodo nodoDireita;
     private Nodo nodoEsquerda;
@@ -12,11 +12,11 @@ class Nodo {
         this.setChave(pessoa.getCpf());
     }
 
-    int getChave() {
+    Long getChave() {
         return this.chave;
     }
 
-    void setChave(int chave) {
+    void setChave(Long chave) {
         this.chave = chave;
     }
 
