@@ -16,12 +16,12 @@ public class AppArvore {
         String entrada = "";
 
         while (!entrada.equals("s")) {
-            System.out.println("\n" +
+            String str = "\n" +
                     "1 - Buscar por CPF; \n" +
                     "2 - Buscar por intervalo de data de nascimento; \n" +
                     "3 - Buscar por nome; \n" +
-                    "s - Sair;");
-            entrada = verificarEntradaService.verificar(Teclado.leString("Escolha uma opção: "));
+                    "s - Sair;";
+            entrada = verificarEntradaService.verificar(Teclado.leString(str + "\nEscolha uma opção: "));
         }
     }
 }
