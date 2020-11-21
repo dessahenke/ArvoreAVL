@@ -25,7 +25,7 @@ class ArvoreService {
         //Teclado.mostraMensagem(infos[0]);
         Long cpf = Long.parseLong(infos[0]);
         Long rg = Long.parseLong(infos[1]);
-        String nome = infos[2];
+        String nome = infos[2].replaceAll("\"","").replaceAll(","," ");
         Date dataNascimento = transformToDate(infos[3]);
         String cidade = infos[4];
 
