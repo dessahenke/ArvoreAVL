@@ -45,7 +45,7 @@ class CalcularBalanceamentoArvore {
 
         if (nodo.getBalanceamento() >= VALOR_ARVORE_DESBALANCEADA || nodo.getBalanceamento() <= -VALOR_ARVORE_DESBALANCEADA) {
             if (nodo.getBalanceamento() >= VALOR_ARVORE_DESBALANCEADA) {
-                if (nodo.getBalanceamento() * nodo.getNodoDireita().getBalanceamento() > ZERO) {
+                if (nodo.getBalanceamento() * nodo.getNodoEsquerda().getBalanceamento() > ZERO) {
                     System.out.println("Rotacao Simples Direita");
                     return new RotacionarArvore().rotacaoSimplesDireita(nodo);
                 } else {
@@ -53,7 +53,7 @@ class CalcularBalanceamentoArvore {
                     return new RotacionarArvore().rotacaoDuplaDireita(nodo);
                 }
             } else {  // bal <= -2
-                if (nodo.getBalanceamento() * nodo.getNodoEsquerda().getBalanceamento() > ZERO) {
+                if (nodo.getBalanceamento() * nodo.getNodoDireita().getBalanceamento() > ZERO) {
                     System.out.println("Rotacao Simples Esquerda");
                     return new RotacionarArvore().rotacaoSimplesEsquerda(nodo);
                 } else {

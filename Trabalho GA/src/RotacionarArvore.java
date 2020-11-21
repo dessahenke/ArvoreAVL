@@ -1,6 +1,6 @@
 class RotacionarArvore {
 
-    Nodo rotacaoSimplesDireita(final Nodo nodo) {
+    Nodo rotacaoSimplesEsquerda(final Nodo nodo) {
         Nodo filhoDoFilho = null;
         Nodo filhoDireita = nodo.getNodoDireita();
         if (filhoDireita != null && filhoDireita.getNodoEsquerda() != null) {
@@ -11,7 +11,7 @@ class RotacionarArvore {
         return filhoDireita;
     }
 
-    Nodo rotacaoSimplesEsquerda(final Nodo nodo) {
+    Nodo rotacaoSimplesDireita(final Nodo nodo) {
         Nodo filhoDoFilho = null;
         Nodo filhoEsquerda = nodo.getNodoEsquerda();
         if (filhoEsquerda != null && filhoEsquerda.getNodoDireita() != null) {
@@ -22,7 +22,7 @@ class RotacionarArvore {
         return filhoEsquerda;
     }
 
-    Nodo rotacaoDuplaDireita(final Nodo nodo) {
+    Nodo rotacaoDuplaEsquerda(final Nodo nodo) {
         Nodo filhoDireita = nodo.getNodoDireita();
         Nodo filhoDoFilho = filhoDireita.getNodoEsquerda();
         Nodo noInserido = filhoDoFilho.getNodoDireita();
@@ -35,7 +35,7 @@ class RotacionarArvore {
         return novoFilhoDireita;
     }
 
-    Nodo rotacaoDuplaEsquerda(final Nodo nodo) {
+    Nodo rotacaoDuplaDireita(final Nodo nodo) {
         Nodo filhoEsquerda = nodo.getNodoEsquerda();
         Nodo filhoDoFilho = filhoEsquerda.getNodoDireita();
         Nodo noInserido = filhoDoFilho.getNodoEsquerda();
