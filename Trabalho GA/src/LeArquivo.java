@@ -14,10 +14,7 @@ public class LeArquivo {
             while ((linha = br.readLine()) != null) {
                 String[] linhaLimpa = linha.split(csvDivisor);
                 lista.add(linhaLimpa);
-                //System.out.println(lista[lista.length-2] + lista[lista.length-1]);
             }
-            System.out.println(lista.get(0)[0]);
-            //return lista;
 
         } catch (IOException e) {
             e.printStackTrace();
