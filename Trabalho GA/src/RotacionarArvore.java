@@ -29,10 +29,7 @@ class RotacionarArvore {
         filhoDireita.setNodoEsquerda(noInserido);
         filhoDoFilho.setNodoDireita(filhoDireita);
         nodo.setNodoDireita(filhoDoFilho);
-        Nodo novoFilhoDireita = nodo.getNodoDireita();
-        nodo.setNodoDireita(null);
-        novoFilhoDireita.setNodoEsquerda(nodo);
-        return novoFilhoDireita;
+        return rotacaoSimplesEsquerda(nodo);
     }
 
     Nodo rotacaoDuplaDireita(final Nodo nodo) {
@@ -42,9 +39,6 @@ class RotacionarArvore {
         filhoEsquerda.setNodoDireita(noInserido);
         filhoDoFilho.setNodoEsquerda(filhoEsquerda);
         nodo.setNodoEsquerda(filhoDoFilho);
-        Nodo novoFilhoEsquerda = nodo.getNodoDireita();
-        nodo.setNodoEsquerda(null);
-        novoFilhoEsquerda.setNodoDireita(nodo);
-        return novoFilhoEsquerda;
+        return rotacaoSimplesDireita(nodo);
     }
 }
